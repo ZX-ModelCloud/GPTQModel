@@ -72,9 +72,9 @@ class GptqHfQuantizer(HfQuantizer):
             )
         elif is_gptqmodel_available() and (
             version.parse(importlib.metadata.version("gptqmodel")) < version.parse("1.4.3")
-            or version.parse(importlib.metadata.version("optimum")) < version.parse("1.23.99")
+            or version.parse(importlib.metadata.version("optimum")) < version.parse("1.23.3")
         ):
-            raise ImportError("The gptqmodel version should be >= 1.4.3, optimum version should >= 1.24.0")
+            raise ImportError("The gptqmodel version should be >= 1.4.3, optimum version should >= 1.23.3")
 
     def update_torch_dtype(self, torch_dtype: "torch.dtype") -> "torch.dtype":
         if torch_dtype is None:
