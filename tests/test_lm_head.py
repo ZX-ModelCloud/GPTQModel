@@ -19,6 +19,7 @@ import os
 import tempfile
 
 from datasets import load_dataset
+from transformers import AutoTokenizer
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 from gptqmodel import GPTQModel, QuantizeConfig  # noqa: E402
@@ -37,7 +38,7 @@ class TestLmHeadLoad(ModelTest):
     def test_load(self):
         model = GPTQModel.load(self.NATIVE_MODEL_ID, device=self.DEVICE)
 
-        # validate lm_head is loaded as quantized layer
+        # validate lm_head is loaded as quantized layer with
         assert isinstance(model.model.lm_head, BaseQuantLinear)
 
     def test_eval(self):

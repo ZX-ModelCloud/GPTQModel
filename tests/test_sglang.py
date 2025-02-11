@@ -32,13 +32,13 @@ class TestLoadSglang(ModelTest):
 
     @classmethod
     def setUpClass(self):
-        # sglang set disable_flashinfer=True still import flashinfer
-        if importlib.util.find_spec("flashinfer") is None:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", "flashinfer", "-i", f"https://flashinfer.ai/whl/cu{torch.version.cuda.replace('.', '')}/torch{'.'.join(torch.__version__.split('.')[:2])}"])
-        if importlib.util.find_spec("sglang") is None:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", "sglang[srt]>=0.3.2"])
+        # # sglang set disable_flashinfer=True still import flashinfer
+        # if importlib.util.find_spec("flashinfer") is None:
+        #     subprocess.check_call([sys.executable, "-m", "pip", "install", "flashinfer", "-i", f"https://flashinfer.ai/whl/cu{torch.version.cuda.replace('.', '')}/torch{'.'.join(torch.__version__.split('.')[:2])}"])
+        # if importlib.util.find_spec("sglang") is None:
+        #     subprocess.check_call([sys.executable, "-m", "pip", "install", "sglang[srt]>=0.3.2"])
 
-        self.MODEL_ID = "/monster/data/model/TinyLlama-1.1B-Chat-v1.0-GPTQ-4bit"
+        self.MODEL_ID = "/monster/data/model/Qwen1.5-1.8B-Chat-GPTQ-4bits-dynamic-cfg-with-lm_head"
 
     def test_load_sglang(self):
         model = GPTQModel.load(
